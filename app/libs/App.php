@@ -1,23 +1,27 @@
 <?php
 
-class Core {
-  protected $controller = '';
-  protected $method = '';
+class App {
+  protected $controller = 'Home';
+  protected $method = 'index';
   protected $params = [];
   protected $query = [];
 
   public function __construct() {
-    $this->controller = $this->getController();
-    $this->method = $this->getMethod();
-    $this->params = $this->getParams();
-    $this->query = $this->getQuery();
-    print_r($this->getController());
-    echo '<br/>';
-    print_r($this->getMethod());
-    echo '<br/>';
-    print_r($this->getParams());
-    echo '<br/>';
-    print_r($this->getQuery());
+    // var_dump($this->$controller);
+    // var_dump($this->getController());
+
+    if ($this->getController() !== '') {
+      $this->controller = $this->getController();
+    }
+    if ($this->getMethod() !== '') {
+      $this->method = $this->getMethod();
+    }
+    if (count($this->getParams()) > 0) {
+      $this->params = $this->getParams();
+    }
+    if (count($this->getQuery()) > 0) {
+      $this->query = $this->getQuery();
+    }
   }
 
   public function getURL() {

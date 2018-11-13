@@ -1,23 +1,19 @@
 <?php
+require 'app/libs/Database.php';
 
-class Database {
-  public $connection;
-
+class Berita extends Database {
   public function __construct() {
-    $this->connection = $this->connect();
+    $this->connnection->query("
+      create table if note exists berita (
+        id integer primary key auto_increment,
+        judul varchar(50) not null,
+        isi text not null,
+        tanggal now()
+      )
+    ");
   }
 
-  public function connect() {
-    $dbConfig = parse_ini_file($_SERVER['DOCUMENT_ROOT'].'/app/configs/database.ini');
+  public function tambahBerita() {
 
-    $con = new PDO(
-      $dbConfig['driver'].':host='.$dbConfig['host'].';dbname='.$dbConfig['database'], 
-      $dbConfig['username'], 
-      $dbConfig['password']
-    );
-
-    $con->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
-    return $con;
   }
 }

@@ -6,7 +6,7 @@ class Database {
 
   public function __construct() {
     $this->$dbConfig = parse_ini_file($_SERVER['DOCUMENT_ROOT'].'/app/configs/database.ini');
-    $this->$connection = $this->connect();
+    $this->connect();
   }
 
   public function connect() {
@@ -16,8 +16,8 @@ class Database {
       $this->$dbConfig['password']
     );
     $con->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    $con->exec('create database if not exists '.$this->$dbConfig['database']);
-    $con->exec('use '.$this->$dbConfig['database']);
-    return $con;
+    $con->query('create database if not exists '.$this->$dbConfig['database']);
+    $con->query('use '.$this->$dbConfig['database']);
+    $this->connection = $con;
   }
 }

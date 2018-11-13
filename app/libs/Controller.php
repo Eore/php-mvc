@@ -1,11 +1,9 @@
 <?php
 
-class Controller extends App {
+require 'app/libs/View.php';
+
+class Controller {
   public function __construct() {
-    require_once $_SERVER['DOCUMENT_ROOT'].'/app/controllers/'.$this->getController().'.php';
-    
-    // $exist = method_exists($this->controller, $this->method);
-    $this->getController()::index();
-    // var_dump($exist);
+    $this->view = new View; 
   }
 }
